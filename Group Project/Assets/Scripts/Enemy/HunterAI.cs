@@ -14,6 +14,7 @@ public class HunterAI : MonoBehaviour
 
     [Header("External Scripts")]
     DashEnemy enemyDash;
+    HidingMechanic hm;
     Pickup[] pick = new Pickup[3];
 
     [Header("Unity Handles")]
@@ -59,6 +60,7 @@ public class HunterAI : MonoBehaviour
         hunterAgent = GetComponent<NavMeshAgent>();
         enemyDash = GetComponent<DashEnemy>();
         changePlayerScript = FindObjectOfType<ChangePlayer>();
+        hm = FindObjectOfType<HidingMechanic>();
         pickUp = GameObject.FindGameObjectsWithTag("Pickup");
 		
         for (int i = 0; i < pickUp.Length; i++)
@@ -93,7 +95,7 @@ public class HunterAI : MonoBehaviour
         //Check the states
         if (!playerInSight && !canTakeColour)
             StandAround();
-        if (playerInSight && !canTakeColour)
+        if (playerInSight && !canTakeColour && !hm.currentlyHiding)
             ChasePlayer();
         if (playerInSight && canTakeColour && hasColours())
             TakeColour();
