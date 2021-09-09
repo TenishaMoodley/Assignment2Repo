@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 	[Header("Unity Handles")]
 	[SerializeField] GameObject pausePanel;
 	[SerializeField] GameObject ggPanel;
+	[SerializeField] GameObject parentForHunters;
 	[SerializeField] Image currentImage, ProgressBar;
 	[SerializeField] Sprite[] images;
 	public AudioSource FinalTheme;
@@ -139,6 +140,7 @@ public class GameManager : MonoBehaviour
 		ggPanel.SetActive(true);
 		waitingSeconds = 2.5f;
 
+		parentForHunters.SetActive(false);
 		isGameOver = true;
 
 		StartCoroutine(DisableGGs());

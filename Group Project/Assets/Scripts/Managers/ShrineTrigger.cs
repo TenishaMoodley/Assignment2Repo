@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class ShrineTrigger : MonoBehaviour
@@ -14,7 +15,9 @@ public class ShrineTrigger : MonoBehaviour
 
 	[Header("Unity Handles")]
 	[SerializeField] Material defaultSkybox, newSkybox, SkyboxTheSecond, SkyBoxTheFirst;
-	
+	[SerializeField] GameObject shrineBeam, shrineText;
+	[SerializeField] Text actualtxtColor;
+	[SerializeField] Color txtColor;
 
 	[Header("Floats")]
 	[SerializeField] float waitTimeTillDisabling;
@@ -22,21 +25,26 @@ public class ShrineTrigger : MonoBehaviour
 
 	[Header("Integers")]
 	public int ActualIndex = -1;
+	[SerializeField] int shapeIndex;
 
 	[Header("Generic Elements")]
 	[SerializeField] string thisShrine;
+
+	[Header("Booleans")]
+	[SerializeField] bool canActivate;
     void Start()
     {
 		
         changePlayerScript = FindObjectOfType<ChangePlayer>();
 		defaultSkybox = RenderSettings.skybox;
+		shrineBeam.SetActive(false);
+		shrineText.SetActive(false);
 
-
-		if (typeOfShrine == typeOFShrine.cube)
+		if (this.typeOfShrine == typeOFShrine.cube)
 			ActualIndex = 0;
-		else if (typeOfShrine == typeOFShrine.sphere)
+		if (this.typeOfShrine == typeOFShrine.sphere)
 			ActualIndex = 1;
-		else if (typeOfShrine == typeOFShrine.prism)
+		if (this.typeOfShrine == typeOFShrine.prism)
 			ActualIndex = 2;
 	}
     private void Update()
@@ -49,15 +57,12 @@ public class ShrineTrigger : MonoBehaviour
         {
             RenderSettings.skybox = SkyboxTheSecond;
         }
-    }
 
-    private void OnTriggerEnter(Collider other)
-	{
-		if(other.CompareTag("Player") && changePlayerScript.hasColour[ActualIndex + 1])
+		if (canActivate && Input.GetKeyDown(KeyCode.LeftControl) && changePlayerScript.checker / shapeIndex == 1)
 		{
 			GameManager.instance.colourCollected[ActualIndex] = true;
 			GameManager.instance.UpdateBar();
-			
+
 			//Play Particle/Animation/Camera Pan
 
 			//Store Colour Permanently
@@ -70,16 +75,32 @@ public class ShrineTrigger : MonoBehaviour
 
 			StartCoroutine(DisableObject());
 
+			//Enable Beam
+			shrineBeam.SetActive(true);
 			//Here we need to sort through the skyboxes
 			if (GameManager.shrinesTriggered == 3)
 				RenderSettings.skybox = newSkybox;
 
 			this.GetComponent<Collider>().enabled = false;
 
-			
 		}
 	}
 
+    private void OnTriggerEnter(Collider other)
+	{
+		if(other.CompareTag("Player") && changePlayerScript.hasColour[ActualIndex + 1])
+		{
+			canActivate = true;
+			shrineText.SetActive(true);
+			actualtxtColor.color = txtColor;
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		canActivate = false;
+		shrineText.SetActive(false);
+	}
 	IEnumerator DisableObject()
 	{
 		yield return new WaitForSeconds(waitTimeTillEnabling);
