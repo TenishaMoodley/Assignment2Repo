@@ -57,6 +57,10 @@ public class HidingMechanic : MonoBehaviour
         if (other.CompareTag(nameOfObjectToHideIn))
         {
             canHide = true;
+
+            //Play Sound
+            FindObjectOfType<MusicManager>().Play("Notification");
+
             UI_Hint.SetActive(canHide);
             Debug.Log("Can Hide!");
         }

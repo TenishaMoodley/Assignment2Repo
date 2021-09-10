@@ -180,6 +180,7 @@ public class HunterAI : MonoBehaviour
                 changePlayerScript.hasShapeColour[0] = pick[0].isColour;
 
                 //Play Sound
+                FindObjectOfType<MusicManager>().Play("LostColour");
             }
             if (changePlayerScript.hasColour[2] && PlayerPrefs.GetInt(shapeTriggered[1]) != 1)
             {

@@ -66,6 +66,9 @@ public class Pickup : MonoBehaviour
     {
         if(other.tag== "Player" && !isColour)
         {
+            //Play Sound
+            FindObjectOfType<MusicManager>().Play("Notification");
+
             ShapeChangeText.SetActive(true);
             ScrollWheelText.SetActive(true);
             Debug.Log("Colour Obtain");

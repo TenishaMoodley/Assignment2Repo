@@ -63,6 +63,9 @@ public class ShrineTrigger : MonoBehaviour
 			GameManager.instance.colourCollected[ActualIndex] = true;
 			GameManager.instance.UpdateBar();
 
+			//Play Sound
+			FindObjectOfType<MusicManager>().Play("ActivationColour");
+
 			//Play Particle/Animation/Camera Pan
 
 			//Store Colour Permanently
@@ -94,6 +97,10 @@ public class ShrineTrigger : MonoBehaviour
 		if(other.CompareTag("Player") && changePlayerScript.hasColour[ActualIndex + 1])
 		{
 			canActivate = true;
+
+			//Play Sound
+			FindObjectOfType<MusicManager>().Play("Notification");
+
 			shrineText.SetActive(true);
 			actualtxtColor.color = txtColor;
 		}
