@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(NavMeshAgent))]
 public class HunterAI : MonoBehaviour
 {
+    #region Variables
     public enum typeOfEnemy { walkEverywhere, straight}
 
     [Header("States")]
@@ -54,7 +55,8 @@ public class HunterAI : MonoBehaviour
     [Range(0, 360f)]
     public float sightRange;
 
-    private void Awake()
+	#endregion
+	private void Awake()
 	{
         namelessPlayer = GameObject.FindWithTag("Player").transform;
         hunterAgent = GetComponent<NavMeshAgent>();
@@ -97,7 +99,7 @@ public class HunterAI : MonoBehaviour
             StandAround();
         if (playerInSight && !canTakeColour && !hm.currentlyHiding)
             ChasePlayer();
-        if (playerInSight && canTakeColour && hasColours())
+        if (playerInSight && canTakeColour && hasColours() && !hm.currentlyHiding)
             TakeColour();
 
     }
