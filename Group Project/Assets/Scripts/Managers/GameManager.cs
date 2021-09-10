@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
 	IEnumerator DisableOBJ()
 	{
 		dialogue.gameObject.SetActive(true);
-		yield return new WaitForSeconds(0.2f);
+		yield return new WaitForSeconds(1f);
 		dialogue.gameObject.SetActive(false);
 		activated = true;
 	}
