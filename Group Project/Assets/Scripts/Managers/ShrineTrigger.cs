@@ -75,6 +75,9 @@ public class ShrineTrigger : MonoBehaviour
 
 			StartCoroutine(DisableObject());
 
+			//Disable Text
+			shrineText.SetActive(false);
+
 			//Enable Beam
 			shrineBeam.SetActive(true);
 			//Here we need to sort through the skyboxes
