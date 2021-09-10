@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
 	[Header("External Script")]
 	SpawnEnemy spawnVillagers;
+	VillagerDialogue dialogue;
 
 	[Header("Unity Handles")]
 	[SerializeField] GameObject pausePanel;
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
 
 	[Header("Booleans")]
 	[SerializeField] bool paused;
-	[SerializeField] bool isGameOver;
+	[SerializeField] bool isGameOver, activated;
 
 	[Header("Shrine Booleans")]
 	public bool[] colourCollected = new bool[3] { false, false, false };
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		PlayerPrefs.DeleteAll();
+		dialogue = FindObjectOfType<VillagerDialogue>();
 	}
 	private void Start()
 	{
@@ -91,7 +93,11 @@ public class GameManager : MonoBehaviour
 		}
 
 		if (shrinesTriggered == 3)
+		{
+			if(!activated)
+				StartCoroutine(DisableOBJ());
 			spawnVillagers.enabled = true;
+		}
 	}
 
 	#region Pause Logic
@@ -171,4 +177,12 @@ public class GameManager : MonoBehaviour
 
 	}
 	#endregion
+
+	IEnumerator DisableOBJ()
+	{
+		dialogue.gameObject.SetActive(true);
+		yield return new WaitForSeconds(0.2f);
+		dialogue.gameObject.SetActive(false);
+		activated = true;
+	}
 }

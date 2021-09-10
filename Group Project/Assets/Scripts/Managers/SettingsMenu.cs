@@ -10,7 +10,7 @@ public class SettingsMenu : MonoBehaviour
 {
 
     public Slider currVolume;
-    public AudioSource ThemeMusic;
+    public AudioSource ThemeMusic, FinalMusic;
 
     /*public Sound [] sounds;
     public AudioSource ESC;
@@ -41,6 +41,7 @@ public class SettingsMenu : MonoBehaviour
         }*/
 
         ThemeMusic.volume = currVolume.value;
+        FinalMusic.volume = currVolume.value;
 
 
         /*ESC.volume = currVolume.value;
