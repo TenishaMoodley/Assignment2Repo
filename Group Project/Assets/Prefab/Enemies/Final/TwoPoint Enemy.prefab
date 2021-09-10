@@ -6773,7 +6773,7 @@ MonoBehaviour:
     m_Bits: 64
   environmment:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   walkingPoint: {x: 0, y: 0, z: 0}
   pickUp:
   - {fileID: 0}

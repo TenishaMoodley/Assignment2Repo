@@ -79,8 +79,11 @@ public class GameManager : MonoBehaviour
 			ProgressBar.fillAmount = 1f;
 
 			//Tween Animation! && aybe Play Particles Here
-			ProgressBar.GetComponentInParent<TweenProgressBar>().TweenPunch();
-
+			if (ProgressBar.isActiveAndEnabled)
+			{
+				ProgressBar.GetComponentInParent<TweenProgressBar>().TweenPunch();
+			}
+			
 			//Change Colour
 			ProgressBar.color = Color.Lerp(ProgressBar.color, Color.green, Time.deltaTime * lerpProgressColorTime);
 
@@ -97,7 +100,6 @@ public class GameManager : MonoBehaviour
 			if(!activated)
 				StartCoroutine(DisableOBJ());
 			spawnVillagers.enabled = true;
-			ProgressBar.transform.parent.gameObject.SetActive(false);
 		}
 	}
 
@@ -153,7 +155,7 @@ public class GameManager : MonoBehaviour
 		ggPanel.SetActive(true);
 		waitingSeconds = 2.5f;
 
-		parentForHunters.SetActive(false);
+		Destroy(parentForHunters);
 		isGameOver = true;
 
 		StartCoroutine(DisableGGs());
@@ -163,6 +165,7 @@ public class GameManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(waitingSeconds);
 			ggPanel.SetActive(false);
+			ProgressBar.transform.parent.gameObject.SetActive(false);
 
 		if (shrinesTriggered == 3)
 		{

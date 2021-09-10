@@ -10,7 +10,7 @@ public class ChangePlayer : MonoBehaviour
     public GameObject prism;
     public GameObject Sphere;
     public ParticleSystem Part;
-    public GameObject ShapeChangeText, ScrollWheelText;
+    public GameObject ShapeChangeText;
 
     [Header("Colour Input")]
     public Color[] color;
@@ -41,13 +41,13 @@ public class ChangePlayer : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            ScrollWheelText.SetActive(false);
+           ;
             //Colour change 
             CheckColour();
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            ScrollWheelText.SetActive(false);
+            
            
             CheckColourDown();
         }

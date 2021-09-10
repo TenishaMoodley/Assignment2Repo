@@ -58,8 +58,8 @@ public class Pickup : MonoBehaviour
             gameObject.SetActive(true);
         }
 
-     //changePlayerScript.hasColour[ActualIndex + 1] = isColour;
-     //changePlayerScript.hasShapeColour[ActualIndex] = isColour;
+     changePlayerScript.hasColour[ActualIndex + 1] = isColour;
+     changePlayerScript.hasShapeColour[ActualIndex] = isColour;
     }
     private void OnTriggerEnter(Collider other)
     {
