@@ -6,6 +6,9 @@ using UnityEngine.AI;
 
 public class Villager : MonoBehaviour
 {
+    [Header("External Scripts")]
+    VillagerDialogue dialogue;
+
     [Header("Unity Handles")]
     Rigidbody rb;
     NavMeshAgent agent;
@@ -26,6 +29,7 @@ public class Villager : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        dialogue = FindObjectOfType<VillagerDialogue>();
     }
 
     // Update is called once per frame
@@ -72,11 +76,13 @@ public class Villager : MonoBehaviour
     void TalkToPlayer()
 	{
         //Stop Villager from walking
+        agent.SetDestination(transform.position);
 
         //Make villager look at player
         transform.LookAt(player);
 
-        Debug.Log("Place dialogue here, like a thank you");
+        dialogue.gameObject.SetActive(true);
+        dialogue.StartDialogue();
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -88,6 +94,9 @@ public class Villager : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             talkingToPlayer = false;
+            dialogue.NextLine();
+        }
     }
 }
