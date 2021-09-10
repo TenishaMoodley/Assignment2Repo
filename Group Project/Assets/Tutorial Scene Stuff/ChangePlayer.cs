@@ -37,8 +37,6 @@ public class ChangePlayer : MonoBehaviour
 
             ShapeChangeText.SetActive(false);
             
-            //Sound for morphing
-            FindObjectOfType<MusicManager>().Play("Morphing");
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -70,6 +68,10 @@ public class ChangePlayer : MonoBehaviour
         if (shapeIndex == 0 && hasColour[0])
         {
             checker = 0;
+
+            //Sound for morphing
+            FindObjectOfType<MusicManager>().Play("Morphing");
+
             partcile.SetActive(true);
             cube.SetActive(false);
             prism.SetActive(false);
@@ -87,6 +89,10 @@ public class ChangePlayer : MonoBehaviour
        else if (shapeIndex == 1 && hasColour[1])
         {
             checker = 1;
+
+            //Sound for morphing
+            FindObjectOfType<MusicManager>().Play("Morphing");
+
             partcile.SetActive(false);
             cube.SetActive(true);
             prism.SetActive(false);
@@ -104,6 +110,10 @@ public class ChangePlayer : MonoBehaviour
         else if (shapeIndex == 2 && hasColour[2])
         {
             checker = 2;
+
+            //Sound for morphing
+            FindObjectOfType<MusicManager>().Play("Morphing");
+
             partcile.SetActive(false);
             cube.SetActive(false);
             prism.SetActive(false);
@@ -118,6 +128,10 @@ public class ChangePlayer : MonoBehaviour
         else if (shapeIndex == 3 && hasColour[3])
         {
             checker = 4;
+
+            //Sound for morphing
+            FindObjectOfType<MusicManager>().Play("Morphing");
+
             partcile.SetActive(false);
             cube.SetActive(false);
             prism.SetActive(true);
