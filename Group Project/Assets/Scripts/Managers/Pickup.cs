@@ -30,7 +30,6 @@ public class Pickup : MonoBehaviour
 
     [Header("Texts game Objects")]
     public GameObject ShapeChangeText;
-    public GameObject ScrollWheelText;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +37,7 @@ public class Pickup : MonoBehaviour
         theme = GameObject.Find("Theme Song").GetComponent<AudioSource>();
         
         ShapeChangeText.SetActive(false);
-        ScrollWheelText.SetActive(false);
+        
 
         isColour = false;
 
@@ -70,7 +69,7 @@ public class Pickup : MonoBehaviour
             FindObjectOfType<MusicManager>().Play("Notification");
 
             ShapeChangeText.SetActive(true);
-            ScrollWheelText.SetActive(true);
+            
             Debug.Log("Colour Obtain");
             isColour = true;
             shapeColour = true;

@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
 			if(!activated)
 				StartCoroutine(DisableOBJ());
 			spawnVillagers.enabled = true;
+			ProgressBar.transform.parent.gameObject.SetActive(false);
 		}
 	}
 
