@@ -8,6 +8,7 @@ public class HidingMechanic : MonoBehaviour
     [SerializeField] LayerMask namelessPlayer;
     [SerializeField] LayerMask hidingSpot, hunterEnemy;
     [SerializeField] GameObject UI_Hint;
+    [SerializeField] Animator anim;
     
 
     [Header("Booleans")]
@@ -24,14 +25,17 @@ public class HidingMechanic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canHide && Input.GetKeyDown(KeyCode.LeftControl))
+        anim.SetBool("CurrentlyHiding", currentlyHiding);
+
+        if (canHide && Input.GetKeyDown(KeyCode.LeftControl))
 		{
             Physics.IgnoreLayerCollision(6, 7, true);
 
             //Hide Player and Play Animation/Camera Stuff/sound Here
-
+            
             currentlyHiding = true;
-		}
+            
+        }
       /*  else
 		{
             Physics.IgnoreLayerCollision(6, 7, false);
@@ -80,6 +84,7 @@ public class HidingMechanic : MonoBehaviour
             UI_Hint.SetActive(canHide);
             Debug.Log("Can't Hide!");
             currentlyHiding = false;
+            anim.SetBool("CurrentlyHiding", currentlyHiding);
         }
     }
 

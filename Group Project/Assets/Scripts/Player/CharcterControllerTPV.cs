@@ -7,6 +7,7 @@ using UnityEngine;
 public class CharcterControllerTPV : MonoBehaviour
 {
     public CharacterController controller;
+    HidingMechanic hm;
 
     [Header("Movement")]
     public float Speed;
@@ -33,6 +34,7 @@ public class CharcterControllerTPV : MonoBehaviour
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        hm = GetComponent<HidingMechanic>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true ;
     }
@@ -40,30 +42,32 @@ public class CharcterControllerTPV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Movement
-        float HoriInput = Input.GetAxisRaw("Horizontal");
-        float VertiInput = Input.GetAxisRaw("Vertical");
-        //Gravity -= 9.81f * Time.deltaTime;
-        Vector3 Direction = new Vector3(HoriInput, 0f, VertiInput).normalized;
-        //Gravity
-        GravityForce();
-        if (Physics.CheckSphere(GroundCheck.position, 0.1f, Ground))
+        if (!hm.currentlyHiding) //Might remove
         {
-            isGrounded = true;
+            //Movement
+            float HoriInput = Input.GetAxisRaw("Horizontal");
+            float VertiInput = Input.GetAxisRaw("Vertical");
+            //Gravity -= 9.81f * Time.deltaTime;
+            Vector3 Direction = new Vector3(HoriInput, 0f, VertiInput).normalized;
+            //Gravity
+            GravityForce();
+            if (Physics.CheckSphere(GroundCheck.position, 0.1f, Ground))
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                isGrounded = false;
+            }
+            if (Direction.magnitude >= 0.1f)
+            {
+                float Angle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
+                float angle_ = Mathf.SmoothDampAngle(transform.eulerAngles.y, Angle, ref Torque, CamLerp);
+                transform.rotation = Quaternion.Euler(0f, angle_, 0f);
+                move = Quaternion.Euler(0f, Angle, 0f) * Vector3.forward;
+                controller.Move(move.normalized * Speed * Time.deltaTime);
+            }
         }
-        else
-        {
-            isGrounded = false;
-        }
-        if (Direction.magnitude>= 0.1f)
-        {
-            float Angle = Mathf.Atan2(Direction.x, Direction.z) * Mathf.Rad2Deg + Camera.eulerAngles.y;
-            float angle_ = Mathf.SmoothDampAngle(transform.eulerAngles.y, Angle, ref Torque, CamLerp);
-            transform.rotation = Quaternion.Euler(0f, angle_, 0f);
-            move = Quaternion.Euler(0f, Angle, 0f) * Vector3.forward;
-            controller.Move(move.normalized * Speed * Time.deltaTime);
-        }
-
        
         // Jumping 
         /*if (Input.GetKeyDown(KeyCode.Space))
