@@ -89,6 +89,7 @@ public class ShrineTrigger : MonoBehaviour
 
 			this.GetComponent<Collider>().enabled = false;
 
+			canActivate = false;
 		}
 	}
 
@@ -97,6 +98,8 @@ public class ShrineTrigger : MonoBehaviour
 		if(other.CompareTag("Player") && changePlayerScript.hasColour[ActualIndex + 1])
 		{
 			canActivate = true;
+
+			
 
 			//Play Sound
 			FindObjectOfType<MusicManager>().Play("Notification");

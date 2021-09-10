@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance;
 	public static int shrinesTriggered;
 
+	[Header("External Script")]
+	SpawnEnemy spawnVillagers;
+
 	[Header("Unity Handles")]
 	[SerializeField] GameObject pausePanel;
 	[SerializeField] GameObject ggPanel;
@@ -44,10 +47,12 @@ public class GameManager : MonoBehaviour
 	}
 	private void Start()
 	{
+		spawnVillagers = GetComponent<SpawnEnemy>();
 		theme = GameObject.Find("Theme Song").GetComponent<AudioSource>();
 		FinalTheme = GameObject.Find("Final Theme Song").GetComponent<AudioSource>();
 		FinalTheme.enabled = false;
-
+		spawnVillagers.enabled = false;
+		
 		ggPanel.SetActive(false);
 		pausePanel.SetActive(false);
 		SwitchImages(0, new Color(255, 255, 255, 0.29f));
@@ -85,7 +90,8 @@ public class GameManager : MonoBehaviour
 
 		}
 
-		
+		if (shrinesTriggered == 3)
+			spawnVillagers.enabled = true;
 	}
 
 	#region Pause Logic

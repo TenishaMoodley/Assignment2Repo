@@ -10,6 +10,8 @@ TagManager:
   - Pickup
   - Shrine
   - MoldSound
+  - Villager
+  - VillageSpots
   layers:
   - Default
   - TransparentFX
