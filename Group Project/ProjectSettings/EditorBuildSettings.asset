@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Final/Submitting/MainMenu.unity
     guid: ca176ae9095d3da4eb78be3a3646bb45
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Final/Submitting/StoryContext.unity
     guid: 08ee8dc9498ceff41a4e58ce706f9504
   - enabled: 1
