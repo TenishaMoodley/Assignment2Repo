@@ -39,18 +39,11 @@ public class Colour : MonoBehaviour
         {
             if (GameManager.instance.colourCollected[shrineTrigger[triggerIndex].ActualIndex])
             {
-              // rend.sharedMaterials[i].color = defaultColors[i];
+
                rend.sharedMaterials[i].color = Color.Lerp(rend.sharedMaterials[i].color, defaultColors[i], GameManager.instance.lerpColour * Time.deltaTime);
-                // rend.sharedMaterials[i].color = Color.Lerp(newColours[i], defaultColors[i], 1f);
+
             }
 
         }
-
-        //TODO: REMOVE
-        if(Input.GetKeyDown(KeyCode.L))
-		{
-            GameManager.instance.colourCollected[shrineTrigger[triggerIndex].ActualIndex] = true;
-		}
-       
     }
 }
