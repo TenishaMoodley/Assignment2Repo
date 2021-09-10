@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Final/Submitting/MainMenu.unity
     guid: ca176ae9095d3da4eb78be3a3646bb45
   - enabled: 1
+    path: Assets/Scenes/Final/Submitting/StoryContext.unity
+    guid: 08ee8dc9498ceff41a4e58ce706f9504
+  - enabled: 1
     path: Assets/Scenes/Final/Playtest/PlaytestingFinalGameScene.unity
     guid: 247599c2d71230849ae7516a09737002
   m_configObjects: {}
