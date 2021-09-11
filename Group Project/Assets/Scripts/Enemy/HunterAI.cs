@@ -168,7 +168,9 @@ public class HunterAI : MonoBehaviour
            if(changePlayerScript.hasColour[1] && PlayerPrefs.GetInt(shapeTriggered[0]) != 1)
 			{
                 Debug.Log("Colour: " + pickUp[0].name + " Taken");
+
                 //Play Animation /Particles
+                GameManager.instance.losingColour.SetActive(true);
 
                 pickUp[0].SetActive(true);
                 pickUp[0].transform.parent.gameObject.SetActive(true);
@@ -185,7 +187,9 @@ public class HunterAI : MonoBehaviour
             if (changePlayerScript.hasColour[2] && PlayerPrefs.GetInt(shapeTriggered[1]) != 1)
             {
                 Debug.Log("Colour: " + pickUp[1].name + " Taken");
+
                 //Play Animation /Particles
+                GameManager.instance.losingColour.SetActive(true);
 
                 pickUp[1].SetActive(true);
                 pickUp[1].transform.parent.gameObject.SetActive(true);
@@ -201,7 +205,9 @@ public class HunterAI : MonoBehaviour
             if (changePlayerScript.hasColour[3] && PlayerPrefs.GetInt(shapeTriggered[2]) != 1)
             {
                 Debug.Log("Colour: " + pickUp[2].name + " Taken");
+
                 //Play Animation /Particles
+                GameManager.instance.losingColour.SetActive(true);
 
                 pickUp[2].SetActive(true);
                 pickUp[2].transform.parent.gameObject.SetActive(true);
@@ -279,7 +285,8 @@ public class HunterAI : MonoBehaviour
     public void ResetTakingColour()
 	{
         hasTakenColour = false;
-	}
+        GameManager.instance.losingColour.SetActive(false);
+    }
 
 
     public bool hasColours()

@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] GameObject parentForHunters;
 	[SerializeField] Image currentImage, ProgressBar;
 	[SerializeField] Sprite[] images;
+	
+	[Header("Unity Public Handles")]
+	public GameObject losingColour;
 	public AudioSource FinalTheme;
 	public AudioSource theme;
 
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
 
 		PlayerPrefs.DeleteAll();
 		dialogue = FindObjectOfType<VillagerDialogue>();
+		losingColour.SetActive(false);
 	}
 	private void Start()
 	{

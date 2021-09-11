@@ -12,6 +12,7 @@ TagManager:
   - MoldSound
   - Villager
   - VillageSpots
+  - LoseColour
   layers:
   - Default
   - TransparentFX
