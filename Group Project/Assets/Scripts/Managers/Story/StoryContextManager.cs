@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Playables;
 using UnityEngine;
 
 public class StoryContextManager : MonoBehaviour
@@ -22,6 +23,7 @@ public class StoryContextManager : MonoBehaviour
     [Header("Unity Handles")]
     [SerializeField] TextMeshProUGUI skipTxt;
     [SerializeField] TextMeshProUGUI RestartTxt;
+    [SerializeField] PlayableDirector dir;
 
     private void Start()
 	{
@@ -30,6 +32,7 @@ public class StoryContextManager : MonoBehaviour
         currentTimeToSkip = timeToSkip;
         canMoveOn = false;
 
+        storyTime = (float)dir.duration;
         StartCoroutine(PlayStory());
     }
 	// Update is called once per frame
@@ -66,6 +69,15 @@ public class StoryContextManager : MonoBehaviour
         {
             timeToSkip = currentTimeToSkip;
         }
+
+        //Skip
+        if(Input.GetKeyDown(KeyCode.R))
+		{
+            dir.Stop();
+            dir.time = 0;
+            dir.Play();
+            dir.Evaluate();
+		}
     }
 
     IEnumerator StartCountdown()
@@ -80,7 +92,7 @@ public class StoryContextManager : MonoBehaviour
         yield return new WaitForSeconds(storyDelay);
 
         //Play story
-
+        dir.Play();
 
         yield return new WaitForSeconds(storyTime);
         skipTxt.text = firstText;
