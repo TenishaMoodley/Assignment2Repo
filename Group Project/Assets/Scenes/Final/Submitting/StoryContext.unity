@@ -329,7 +329,7 @@ MonoBehaviour:
   lastText: Press 'R' to replay
   countdownTime: 5
   storyTime: 35
-  storyDelay: 2.5
+  storyDelay: 1
   timeToSkip: 1.2
   currentTimeToSkip: 0
   canMoveOn: 0

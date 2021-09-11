@@ -126,6 +126,7 @@ public class HidingMechanic : MonoBehaviour
             canHide = false;
             Debug.Log("Can't Hide!");
             currentlyHiding = false;
+            UI_Hint.SetActive(false);
             anim.SetBool("CurrentlyHiding", currentlyHiding);
         }
         if(other.CompareTag(soundToPlayObject))

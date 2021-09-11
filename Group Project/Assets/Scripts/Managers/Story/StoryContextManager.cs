@@ -39,13 +39,6 @@ public class StoryContextManager : MonoBehaviour
 	void Update()
     {
         InputCheck();
-
-        /*
-         * We might delete this
-        if(canMoveOn)
-		{
-            StartCoroutine(StartCountdown());
-		}*/
     }
 
     void CallNextScene()
@@ -70,7 +63,7 @@ public class StoryContextManager : MonoBehaviour
             timeToSkip = currentTimeToSkip;
         }
 
-        //Skip
+        //restart
         if(Input.GetKeyDown(KeyCode.R))
 		{
             dir.Stop();
@@ -78,13 +71,11 @@ public class StoryContextManager : MonoBehaviour
             dir.Play();
             dir.Evaluate();
 		}
-    }
 
-    IEnumerator StartCountdown()
-	{
-        yield return new WaitForSeconds(countdownTime);
-        CallNextScene();
-	}
+        //Skip
+        if (canMoveOn && Input.GetKeyDown(KeyCode.Space))
+            CallNextScene();
+    }
 
     IEnumerator PlayStory()
 	{
