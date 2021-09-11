@@ -25,6 +25,7 @@ public class ChangePlayer : MonoBehaviour
     [Header("Booleans")]
     public bool[] hasColour = new bool[4] { true,false, false, false};
     public bool[] hasShapeColour = new bool[3] { false, false, false };
+    public bool[] isShape = new bool[4] { true, false, false, false};
 
 	// Update is called once per frame
 	void Update()
@@ -68,7 +69,10 @@ public class ChangePlayer : MonoBehaviour
         if (shapeIndex == 0 && hasColour[0])
         {
             checker = 0;
-
+            isShape[0] = true;
+            isShape[1] = false;
+            isShape[2] = false;
+            isShape[3] = false;
             //Sound for morphing
             FindObjectOfType<MusicManager>().Play("Morphing");
 
@@ -89,7 +93,10 @@ public class ChangePlayer : MonoBehaviour
        else if (shapeIndex == 1 && hasColour[1])
         {
             checker = 1;
-
+            isShape[0] = false;
+            isShape[1] = true;
+            isShape[2] = false;
+            isShape[3] = false;
             //Sound for morphing
             FindObjectOfType<MusicManager>().Play("Morphing");
 
@@ -110,6 +117,10 @@ public class ChangePlayer : MonoBehaviour
         else if (shapeIndex == 2 && hasColour[2])
         {
             checker = 2;
+            isShape[0] = false;
+            isShape[1] = false;
+            isShape[2] = true;
+            isShape[3] = false;
 
             //Sound for morphing
             FindObjectOfType<MusicManager>().Play("Morphing");
@@ -128,7 +139,10 @@ public class ChangePlayer : MonoBehaviour
         else if (shapeIndex == 3 && hasColour[3])
         {
             checker = 4;
-
+            isShape[0] = false;
+            isShape[1] = false;
+            isShape[2] = false;
+            isShape[3] = true;
             //Sound for morphing
             FindObjectOfType<MusicManager>().Play("Morphing");
 

@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 	[Header("Singleton && Static Values")]
 	public static GameManager instance;
 	public static int shrinesTriggered;
-    public static bool ConfirmHiding;
 
     [Header("External Script")]
 	SpawnEnemy spawnVillagers;

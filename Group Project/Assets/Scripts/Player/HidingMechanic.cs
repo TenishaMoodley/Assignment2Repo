@@ -7,6 +7,7 @@ public class HidingMechanic : MonoBehaviour
 {
     [Header("External Scripts")]
     ChangePlayer changeplayerSC;
+    CharcterControllerTPV controller;
 
     [Header("Unity Handles")]
     [SerializeField] LayerMask namelessPlayer;
@@ -14,85 +15,84 @@ public class HidingMechanic : MonoBehaviour
     [SerializeField] GameObject UI_Hint, TextCTRL;
     [SerializeField] Animator anim;
     [SerializeField] Color[] ShapesColor;
-    [SerializeField] Transform Player, MoldCentre;
+    [SerializeField] Transform Player, MoldCentre, GetOut;
 
     [Header("Booleans")]
     public bool canHide;
-    public bool currentlyHiding;
+    public bool currentlyHiding, canPlayCamAnim, checkedBool, insideMold;
 
     [Header("Generic Elements")]
     [SerializeField] string nameOfObjectToHideIn;
     [SerializeField] string soundToPlayObject;
+    [SerializeField] string defaultHiding, stopHiding;
 
     [Header("Floats")]
     [SerializeField] float range;
 
-    private void Start()
+	private void Awake()
+	{
+        defaultHiding = UI_Hint.GetComponent<Text>().text;
+
+        UI_Hint.SetActive(false);
+
+    }
+	private void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
         changeplayerSC = GetComponent<ChangePlayer>();
+        controller = GetComponent<CharcterControllerTPV>();
+
+        canPlayCamAnim = false;
     }
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("CurrentlyHiding", GameManager.ConfirmHiding);
+        //Camera Animation
+        anim.SetBool("CurrentlyHiding", canPlayCamAnim);
 
-        if (canHide && Input.GetKeyDown(KeyCode.LeftControl))
+        if (currentlyHiding && Input.GetKeyDown(KeyCode.LeftControl))
 		{
             Physics.IgnoreLayerCollision(6, 7, true);
-            currentlyHiding = true;
-            //Hide Player and Play Animation/Camera Stuff/sound Here
-           // if (GameManager.ConfirmHiding)
-                MovePlayer();
-            
-            
+            checkedBool = true;
         }
-        /*if (changeplayerSC.checker==1)
+
+        if (insideMold && Input.GetKeyDown(KeyCode.LeftControl))
         {
-            TextCTRL.GetComponent<Text>().color = ShapesColor[0];
+            canPlayCamAnim = false;
+            Player.transform.position = GetOut.position;
+
+            controller.canMove = true;
+            currentlyHiding = false;
+            checkedBool = false;
+            Physics.IgnoreLayerCollision(6, 7, false);
         }
-        if (changeplayerSC.checker==2)
-        {
-            TextCTRL.GetComponent<Text>().color = ShapesColor[1];
-        }
-        if (changeplayerSC.checker==3)
-        {
-            TextCTRL.GetComponent<Text>().color = ShapesColor[2];
-        }
-        /*  else
-          {
-              Physics.IgnoreLayerCollision(6, 7, false);
 
-              //Player Stops Hiding and Play Animation/sound Here
-
-              currentlyHiding = false;
-          }*/
-
-
+        //ChangeText
+        if (insideMold)
+            UI_Hint.GetComponent<Text>().text = stopHiding;
     }
 
-	private void FixedUpdate()
-	{
-        if (!currentlyHiding)
-            Debug.Log("Player Moves");
-        else
-            Debug.Log("StopPlayerMovement" + " Is Hiding");
-    }
     public void ChangeColour(int index)
     {
         TextCTRL.GetComponent<Text>().color = ShapesColor[index-1];
     }
-    void MovePlayer()
+    public void MovePlayer()
     {
         Player.transform.position = MoldCentre.position;
+        Debug.Log("Called");
+
+        StartCoroutine(ActivateAnim());
     }
-    private void OnTriggerEnter(Collider other)
+
+	#region Triggers
+	private void OnTriggerEnter(Collider other)
 	{
         if (other.CompareTag(nameOfObjectToHideIn))
         {
             canHide = true;
             MoldCentre = other.GetComponentInParent<DisableCollider>().MoldCentre;
             ChangeColour(other.GetComponentInParent<DisableCollider>().ActualIndex);
+            Check(other.GetComponentInParent<DisableCollider>().ActualIndex);
+
             //Play Sound
             FindObjectOfType<MusicManager>().Play("Notification");
 
@@ -107,18 +107,58 @@ public class HidingMechanic : MonoBehaviour
         }
 	}
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag(nameOfObjectToHideIn))
+        { 
+            Check(other.GetComponentInParent<DisableCollider>().ActualIndex);
+            GetOut = other.GetComponentInParent<DisableCollider>().GetOut;
+        }
+        if(other.CompareTag(soundToPlayObject))
+		{
+            insideMold = true;
+		}
+    }
+	private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(nameOfObjectToHideIn))
         { 
             canHide = false;
-            UI_Hint.SetActive(canHide);
             Debug.Log("Can't Hide!");
             currentlyHiding = false;
             anim.SetBool("CurrentlyHiding", currentlyHiding);
         }
+        if(other.CompareTag(soundToPlayObject))
+		{
+            UI_Hint.GetComponent<Text>().text = defaultHiding;
+            UI_Hint.SetActive(false);
+            insideMold = false;
+		}
+    }
+#endregion
+    void Check(int index)
+    {
+        if (changeplayerSC.isShape[index])
+        {
+            currentlyHiding = true;
+        }
+        else if (changeplayerSC.isShape[index])
+        {
+            currentlyHiding = true;
+        }
+        else if (changeplayerSC.isShape[index])
+        {
+            currentlyHiding = true;
+        }
     }
 
+    IEnumerator ActivateAnim()
+	{
+        yield return new WaitForSeconds(.5f);
+
+        canPlayCamAnim = true;
+        controller.canMove = false;
+	}
 	private void OnDrawGizmosSelected()
 	{
         Gizmos.color = Color.blue;

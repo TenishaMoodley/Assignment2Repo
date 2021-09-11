@@ -466,6 +466,36 @@ Transform:
   m_Father: {fileID: 7221251117596190334}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7190231159980099257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4670638471275624257}
+  m_Layer: 9
+  m_Name: REDGetOutPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4670638471275624257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7190231159980099257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7221251117596190334}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7221251117596190324
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +540,7 @@ Transform:
   - {fileID: 854783480716799487}
   - {fileID: 3184777071288462245}
   - {fileID: 1811564852422959060}
+  - {fileID: 4670638471275624257}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3491,10 +3522,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842f4d0600eb87746a36b5275555ea27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: 0
   ColliderObjs:
   - {fileID: 918635802}
   - {fileID: 577838768}
   MoldCentre: {fileID: 1811564852422959060}
+  GetOut: {fileID: 4670638471275624257}
   shapeIndex: 1
   ActualIndex: 1
 --- !u!208 &1013704741

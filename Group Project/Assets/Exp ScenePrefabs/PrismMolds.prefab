@@ -44,6 +44,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 21, y: 2.5, z: 22}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1071449748200429299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5969980305185105350}
+  m_Layer: 8
+  m_Name: BlueGetOutPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5969980305185105350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071449748200429299}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.87, z: -23.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2947183363055585520}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2947183361908693912
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,6 +742,7 @@ Transform:
   - {fileID: 7459565607610874365}
   - {fileID: 2300939871628174174}
   - {fileID: 6240350713187854689}
+  - {fileID: 5969980305185105350}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -727,10 +758,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842f4d0600eb87746a36b5275555ea27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: 2
   ColliderObjs:
   - {fileID: 2762408249706186964}
   - {fileID: 562507970453477001}
   MoldCentre: {fileID: 6240350713187854689}
+  GetOut: {fileID: 5969980305185105350}
   shapeIndex: 4
   ActualIndex: 3
 --- !u!1 &2947183363283206022

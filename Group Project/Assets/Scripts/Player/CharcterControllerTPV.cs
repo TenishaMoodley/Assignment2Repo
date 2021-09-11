@@ -7,7 +7,7 @@ using UnityEngine;
 public class CharcterControllerTPV : MonoBehaviour
 {
     public CharacterController controller;
-    HidingMechanic hm;
+    
 
     [Header("Movement")]
     public float Speed;
@@ -27,14 +27,14 @@ public class CharcterControllerTPV : MonoBehaviour
     public float CamLerp= 0.5f;
     float Torque;
 
-    //colour 
+    [Header("Booleans")]
+    public bool canMove = true;
   
 
     // Start is called before the first frame update
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
-        hm = GetComponent<HidingMechanic>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true ;
     }
@@ -42,7 +42,7 @@ public class CharcterControllerTPV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!hm.currentlyHiding) //Might remove
+        if (canMove)
         {
             //Movement
             float HoriInput = Input.GetAxisRaw("Horizontal");
@@ -68,7 +68,6 @@ public class CharcterControllerTPV : MonoBehaviour
                 controller.Move(move.normalized * Speed * Time.deltaTime);
             }
         }
-       
         // Jumping 
         /*if (Input.GetKeyDown(KeyCode.Space))
         {

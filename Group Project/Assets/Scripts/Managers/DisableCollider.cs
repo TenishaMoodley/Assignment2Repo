@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class DisableCollider : MonoBehaviour
 {
+	[Header("States")]
+	public typeOfCollider col;
+	public enum typeOfCollider { cube, sphere, prism}
 	[Header("Unity Handles")]
 	[SerializeField] Collider[] ColliderObjs;
-    public Transform  MoldCentre;
+    public Transform  MoldCentre, GetOut;
     
 
 	[Header("Externa Scripts")]
@@ -21,26 +24,20 @@ public class DisableCollider : MonoBehaviour
 	{
 		hm = FindObjectOfType<HidingMechanic>();
 		changePlayerScript = FindObjectOfType<ChangePlayer>();
-       
-       
-        
 	}
 	private void Update()
     {
-       
-        if (hm.currentlyHiding)
+        if (hm.canHide)
 		{
-			if (changePlayerScript.checker / shapeIndex == 1)
+			if (hm.checkedBool && !hm.canPlayCamAnim)
 			{
-                GameManager.ConfirmHiding = true;
 				Disbable();
-				Debug.Log("Disabled");
+				hm.MovePlayer();
 			}
 		}
 		else
 		{
 			EnableColliders();
-            GameManager.ConfirmHiding = false;
         }
 	}
   
