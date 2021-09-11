@@ -711,6 +711,7 @@ Transform:
   - {fileID: 8221464373688284314}
   - {fileID: 7459565607610874365}
   - {fileID: 2300939871628174174}
+  - {fileID: 6240350713187854689}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -729,7 +730,9 @@ MonoBehaviour:
   ColliderObjs:
   - {fileID: 2762408249706186964}
   - {fileID: 562507970453477001}
+  MoldCentre: {fileID: 6240350713187854689}
   shapeIndex: 4
+  ActualIndex: 3
 --- !u!1 &2947183363283206022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,3 +1776,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15.978909, y: 9.747175, z: 33.452457}
   m_Center: {x: -0.61075515, y: -4.3735867, z: 0.73097354}
+--- !u!1 &8506395889759423147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6240350713187854689}
+  m_Layer: 8
+  m_Name: SPawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6240350713187854689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8506395889759423147}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.87, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2947183363055585520}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
