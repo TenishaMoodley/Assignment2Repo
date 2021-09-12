@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
 	void GGs()
 	{
 		ggPanel.SetActive(true);
-		waitingSeconds = 2.5f;
+		waitingSeconds = 4.5f;
 
 		Destroy(parentForHunters);
 		isGameOver = true;
