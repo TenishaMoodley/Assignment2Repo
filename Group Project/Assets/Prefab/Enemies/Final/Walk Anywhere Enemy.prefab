@@ -1830,7 +1830,7 @@ MonoBehaviour:
   - Cube
   - Sphere
   - Prism
-  angle: 90
+  angle: 110
   sightRange: 55
 --- !u!114 &5095700764856199958
 MonoBehaviour:
@@ -1844,8 +1844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9af0881410c9f428924e37221a0e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 15
-  dashDistance: 17
+  dashSpeed: 13
+  dashDistance: 16
   multiplier: 2.2
 --- !u!1 &7641407090629944539
 GameObject:
